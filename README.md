@@ -11,7 +11,8 @@ The RiotCrawl class contains a number of methods to retrieve the information req
 The bellow script will create all the necessary links, search them, and return the JSON's objects saved to the 'Json Downloads' folder.
 
 ```python
-from RiotCrawler import RiotCrawl
+from RiotCrawler.RiotCrawl import  RiotCrawl
+
 rc = RiotCrawl('config.ini')
 rc.make_links()
 rc.match_history_links()
@@ -21,7 +22,8 @@ rc.get_json(path='Json Downloads')
 An option is given to return the links that are created or retrieved from Riots website in case batch running of links is wanted.
 
 ```python
-from RiotCrawler import RiotCrawl
+from RiotCrawler.RiotCrawl import RiotCrawl
+
 rc = RiotCrawl('config.ini')
 schedule_links = rc.make_links(inplace=False)
 match_links = rc.match_history_links(schedule_links, inplace=False)
