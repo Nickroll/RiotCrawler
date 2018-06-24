@@ -1,8 +1,6 @@
 from multiprocessing import Pool
 from typing import Union, List
-
 from requests_html import HTMLSession
-
 from RiotCrawler.Exceptions.errors import BatchError
 
 
