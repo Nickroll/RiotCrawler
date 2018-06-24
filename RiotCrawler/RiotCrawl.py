@@ -1,6 +1,7 @@
 import warnings
 from typing import Union
 
+from .batchProcessing import batch_process_links
 from .crawlJSON import crawl_json
 from .makeLinks import create_links
 from .matchCrawler import get_match_history_links
@@ -36,6 +37,10 @@ class RiotCrawl(object):
     the provided path
 
     >>> rc.run_all(path='path_to_folder')
+
+    Links can be run as a batch using batch_run see warning in method for why this could be a problem.
+
+    >>> rc.batch_run(links, batch_size, num_process)
     """
 
     def __init__(self, config_file_path: str):
@@ -118,3 +123,22 @@ class RiotCrawl(object):
         print('Getting JSON information now, may take a while')
         self.get_json(path=path)
         print('Done!!!')
+
+    @staticmethod
+    def batch_run(links: Union[list, tuple] = None, batch_size: int = None, num_process: int = None) -> list:
+        """
+        ****WARNING****
+        This should only be run when with a computer that can handle the multi processes and I/O. If you run into
+        problems, try running one region, or sets of weeks at a time.
+
+        Processes the links passed using multiprocessing in a batch manner. Best performance when tested was with
+        batch_size of 2 with 10 processes. This was not fully tested. Smaller batches and larger process should
+        increase performance.
+
+        :param links: A list or tuple of links to the schedule page of lolesports
+        :param batch_size: The size to cut up the lists into
+        :param num_process: The number of processes to be passed to _multi_process
+        :return: A list of links to the stats match history pages
+        """
+
+        return batch_process_links(links, batch_size, num_process)

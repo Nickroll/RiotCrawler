@@ -20,6 +20,7 @@ def get_match_history_links(schedule_links: Tuple[str], xpath: str = None,
         raise TypeError('The links provided were not of type list or tuple')
 
     session = HTMLSession()
+    session.browser
     match_history_list = list()
 
     for link in schedule_links:
@@ -39,4 +40,4 @@ def get_match_history_links(schedule_links: Tuple[str], xpath: str = None,
             for stat in stat_link:
                 match_history_list.extend([h for h in stat.absolute_links])
 
-    return tuple(match_history_list)
+        return tuple(match_history_list)

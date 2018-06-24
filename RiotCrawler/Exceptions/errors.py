@@ -16,3 +16,7 @@ class RegionError(Exception):
 
 class SplitError(Exception):
     pass
+
+
+class BatchError(Exception):
+    pass
